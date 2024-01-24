@@ -1,46 +1,22 @@
-# < This section can be removed >
+# Terraform Kubernetes Downscaler
 
-Official doc for public modules [hashicorp](https://developer.hashicorp.com/terraform/registry/modules/publish)
-
-Repo structure:
-
-```
-├── README.md
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── ...
-├── modules/
-│   ├── nestedA/
-│   │   ├── README.md
-│   │   ├── variables.tf
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   ├── nestedB/
-│   ├── .../
-├── examples/
-│   ├── exampleA/
-│   │   ├── main.tf
-│   ├── exampleB/
-│   ├── .../
-```
-
-# My Terraform Module
-
-< module description >
+Terraform that encapsules and deploy `kube-downscaler` from <https://codeberg.org/hjacobs/kube-downscaler>.
 
 ## Usage
 
-< describe the module minimal code required for a deployment >
+The goal of the module is to require the least input parameters possible, so you can deploy it (and let it do nothing, by default) like this.
 
 ```hcl
-module "my_module_example" {
+module "kube_downscaler" {
+  source = "github.com/tx-pts-dai/terraform-kubernetes-downscaler"
 }
 ```
 
+If you want to enable downscaling of your workloads, we recommend using the Deployment, HPA, ... annotation so that you can control in a very precise way which resource you want to scale down. You can do so by following the official documentation at <https://codeberg.org/hjacobs/kube-downscaler/>
+
 ## Explanation and description of interesting use-cases
 
-< create a h2 chapter for each section explaining special module concepts >
+Kube Downscaler allows you to scale down to 0 your workloads when you don't need them (out of office hours, weekends, etc...)
 
 ## Examples
 
@@ -48,7 +24,7 @@ module "my_module_example" {
 
 ## Contributing
 
-< issues and contribution guidelines for public modules >
+In order to contribute, please install `pre-commit` and run some checks locally, before pushing, according to the next section.
 
 ### Pre-Commit
 
