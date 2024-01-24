@@ -1,10 +1,10 @@
 # Terraform Kubernetes Downscaler
 
-Terraform that encapsules and deploy `kube-downscaler` from <https://codeberg.org/hjacobs/kube-downscaler>.
+Terraform module that encapsules and deploy the `kube-downscaler` controller from <https://codeberg.org/hjacobs/kube-downscaler>.
 
 ## Usage
 
-The goal of the module is to require the least input parameters possible, so you can deploy it (and let it do nothing, by default) like this.
+The goal of the module is to require the least input parameters possible, so you can deploy the `kube-downscaler` controller (and let it do nothing, by default) wiht the following Terraform code.
 
 ```hcl
 module "kube_downscaler" {
@@ -12,7 +12,7 @@ module "kube_downscaler" {
 }
 ```
 
-If you want to enable downscaling of your workloads, we recommend using the Deployment, HPA, ... annotation so that you can control in a very precise way which resource you want to scale down. You can do so by following the official documentation at <https://codeberg.org/hjacobs/kube-downscaler/>
+If you want to enable downscaling of your workloads, we recommend using the annotation on your resource (Deployment, HPA, ...) so that you can control in a very precise way which resource you want to scale down. You can do so by following the official documentation at <https://codeberg.org/hjacobs/kube-downscaler/>
 
 ## Explanation and description of interesting use-cases
 
