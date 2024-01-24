@@ -75,7 +75,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_default_uptime"></a> [default\_uptime](#input\_default\_uptime) | Specifies default uptime for all the resources that don't override it. Documentation at https://codeberg.org/hjacobs/kube-downscaler#uptime-downtime-spec. Default is 'always up'. | `string` | `"Mon-Sun 00:00-24:00 Europe/Berlin"` | no |
 | <a name="input_dry_run"></a> [dry\_run](#input\_dry\_run) | Whether to use the `--dry-run` CLI flag to block the downscaler from introducing any change. | `bool` | `false` | no |
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | Version of the 'kube-downscaler' image deployed as a controller | `string` | `"23.2.0"` | no |
 

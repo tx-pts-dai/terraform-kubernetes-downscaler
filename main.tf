@@ -102,9 +102,7 @@ resource "kubernetes_deployment_v1" "kube_downscaler" {
         container {
           image = "hjacobs/kube-downscaler:${var.image_version}"
           name  = local.downscaler_name
-          args = concat([
-            "--default-uptime='${var.default_uptime}'", # Always up if not specifically mentioned on the workload itself
-          ], var.dry_run ? ["--dry-run"] : [])
+          args  = var.dry_run ? ["--dry-run"] : []
 
           resources {
             limits = {
