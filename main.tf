@@ -19,20 +19,20 @@ locals {
   }
 }
 
-resource "kubernetes_namespace_v1" "kube_downscaler" {
+resource "kubernetes_namespace_v1" "this" {
   metadata {
     name = local.downscaler_name
   }
 }
 
-resource "kubernetes_service_account_v1" "kube_downscaler" {
+resource "kubernetes_service_account_v1" "this" {
   metadata {
     name      = local.downscaler_name
     namespace = kubernetes_namespace_v1.kube_downscaler.metadata[0].name
   }
 }
 
-resource "kubernetes_cluster_role_v1" "kube_downscaler" {
+resource "kubernetes_cluster_role_v1" "this" {
   metadata {
     name = local.downscaler_name
   }
@@ -62,7 +62,7 @@ resource "kubernetes_cluster_role_v1" "kube_downscaler" {
   }
 }
 
-resource "kubernetes_cluster_role_binding_v1" "kube_downscaler" {
+resource "kubernetes_cluster_role_binding_v1" "this" {
   metadata {
     name = local.downscaler_name
   }
@@ -80,7 +80,7 @@ resource "kubernetes_cluster_role_binding_v1" "kube_downscaler" {
   }
 }
 
-resource "kubernetes_deployment_v1" "kube_downscaler" {
+resource "kubernetes_deployment_v1" "this" {
   metadata {
     name      = local.downscaler_name
     namespace = kubernetes_namespace_v1.kube_downscaler.metadata[0].name
