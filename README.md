@@ -4,7 +4,7 @@ Terraform module that encapsules and deploy the `kube-downscaler` controller fro
 
 ## Usage
 
-The goal of the module is to require the least input parameters possible, so you can deploy the `kube-downscaler` controller (and let it do nothing, by default) wiht the following Terraform code.
+The goal of the module is to require the least input parameters possible, so you can deploy the `kube-downscaler` controller (and let it do nothing, by default) with the following Terraform code.
 
 ```hcl
 module "kube_downscaler" {
