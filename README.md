@@ -18,7 +18,7 @@ If you want to enable downscaling of your workloads, we recommend using the anno
 
 Kube Downscaler allows you to scale down to 0 your workloads when you don't need them (out of office hours, weekends, etc...).
 
-Let's say that we want to downscale to 0 the `sample` Deployment from 1am to 5am every day. We could add the following annotation on the Deployment and the `kube-downscaler` will do the trick.
+Let's say that we want to downscale to 0 the `sample` Deployment at 8pm and bring it back to original replicas at 5am every day. We could add the following annotation on the Deployment and the `kube-downscaler` will do the trick.
 
 ```yaml
 apiVersion: apps/v1
@@ -26,12 +26,13 @@ kind: Deployment
 metadata:
     name: sample
     annotations:
-        downscaler/downscale-period: Mon-Sun 01:00-05:00 Europe/Zurich
+        downscaler/downscale-period: Mon-Sun 20:00-20:01 Europe/Zurich
+        downscaler/upscale-period: Mon-Sun 05:00-05:01 Europe/Zurich
 ```
 
 ## Examples
 
-< if the folder `examples/` exists, put here the link to the examples subfolders with their descriptions >
+1. [Shutdown at night, every day](./examples/shutdown-at-night.tf)
 
 ## Contributing
 
@@ -76,11 +77,11 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [kubernetes_cluster_role_binding_v1.kube_downscaler](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding_v1) | resource |
-| [kubernetes_cluster_role_v1.kube_downscaler](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_v1) | resource |
-| [kubernetes_deployment_v1.kube_downscaler](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1) | resource |
-| [kubernetes_namespace_v1.kube_downscaler](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1) | resource |
-| [kubernetes_service_account_v1.kube_downscaler](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account_v1) | resource |
+| [kubernetes_cluster_role_binding_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding_v1) | resource |
+| [kubernetes_cluster_role_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_v1) | resource |
+| [kubernetes_deployment_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1) | resource |
+| [kubernetes_namespace_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1) | resource |
+| [kubernetes_service_account_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account_v1) | resource |
 
 ## Inputs
 
