@@ -16,7 +16,18 @@ If you want to enable downscaling of your workloads, we recommend using the Depl
 
 ## Explanation and description of interesting use-cases
 
-Kube Downscaler allows you to scale down to 0 your workloads when you don't need them (out of office hours, weekends, etc...)
+Kube Downscaler allows you to scale down to 0 your workloads when you don't need them (out of office hours, weekends, etc...).
+
+Let's say that we want to downscale to 0 the `sample` Deployment from 1am to 5am every day. We could add the following annotation on the Deployment and the `kube-downscaler` will do the trick.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: sample
+    annotations:
+        downscaler/downscale-period: Mon-Sun 01:00-05:00 Europe/Zurich
+```
 
 ## Examples
 
