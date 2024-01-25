@@ -31,6 +31,12 @@ metadata:
         downscaler/upscale-period: Mon-Sun 05:00-05:01 Europe/Zurich
 ```
 
+## F.A.Q
+
+1. _My deployment has been shut down and won't scale up until tomorrow, what options do I have to bring it back up?_
+
+    Re-triggering the pipeline for deploying it again would make it available until the next scale-down window.
+
 ## Examples
 
 1. [Shutdown at night, every day](./examples/shutdown-at-night.tf)
