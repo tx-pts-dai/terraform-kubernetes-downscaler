@@ -107,6 +107,7 @@ resource "kubernetes_deployment_v1" "this" {
           content {
             effect   = toleration.value.effect
             key      = toleration.value.key
+            value    = toleration.value.value
             operator = toleration.value.operator
           }
         }
