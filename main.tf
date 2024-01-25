@@ -100,6 +100,17 @@ resource "kubernetes_deployment_v1" "this" {
 
       spec {
         service_account_name = kubernetes_service_account_v1.this.metadata[0].name
+        node_selector        = var.node_selector
+
+        dynamic "toleration" {
+          for_each = var.tolerations
+          content {
+            effect   = toleration.value.effect
+            key      = toleration.value.key
+            operator = toleration.value.operator
+          }
+        }
+
         container {
           image = "hjacobs/kube-downscaler:${var.image_version}"
           name  = local.downscaler_name

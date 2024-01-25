@@ -12,3 +12,17 @@ terraform {
 module "downscaler" {
   source = "../"
 }
+
+module "downscaler_karpenter" {
+  source = "../"
+
+  node_selector = {
+    "provisioner-group" = "default"
+  }
+
+  tolerations = [{
+    effect   = "NoSchedule"
+    key      = "karpenter.sh/default"
+    operator = "Exists"
+  }]
+}

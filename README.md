@@ -89,6 +89,8 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_dry_run"></a> [dry\_run](#input\_dry\_run) | Whether to use the `--dry-run` CLI flag to block the downscaler from introducing any change. | `bool` | `false` | no |
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | Version of the 'kube-downscaler' image deployed as a controller | `string` | `"23.2.0"` | no |
+| <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector) | Node selector specifics for the Kubernetes deployment | `map(string)` | `{}` | no |
+| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | List of tolerations for the Kubernetes deployment | <pre>list(object({<br>    effect   = optional(string)<br>    key      = optional(string)<br>    operator = optional(string)<br>    value    = optional(string)<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
