@@ -1,54 +1,42 @@
-# < This section can be removed >
+# Terraform Kubernetes Downscaler
 
-Official doc for public modules [hashicorp](https://developer.hashicorp.com/terraform/registry/modules/publish)
-
-Repo structure:
-
-```
-├── README.md
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── ...
-├── modules/
-│   ├── nestedA/
-│   │   ├── README.md
-│   │   ├── variables.tf
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   ├── nestedB/
-│   ├── .../
-├── examples/
-│   ├── exampleA/
-│   │   ├── main.tf
-│   ├── exampleB/
-│   ├── .../
-```
-
-# My Terraform Module
-
-< module description >
+Terraform module that encapsules and deploy the `kube-downscaler` controller from <https://codeberg.org/hjacobs/kube-downscaler>.
 
 ## Usage
 
-< describe the module minimal code required for a deployment >
+The goal of the module is to require the least input parameters possible, so you can deploy the `kube-downscaler` controller (and let it do nothing, by default) with the following Terraform code.
 
 ```hcl
-module "my_module_example" {
+module "kube_downscaler" {
+  source = "github.com/tx-pts-dai/terraform-kubernetes-downscaler"
 }
 ```
 
+If you want to enable downscaling of your workloads, we recommend using the annotation on your resource (Deployment, HPA, ...) so that you can control in a very precise way which resource you want to scale down. You can do so by following the official documentation at <https://codeberg.org/hjacobs/kube-downscaler/>
+
 ## Explanation and description of interesting use-cases
 
-< create a h2 chapter for each section explaining special module concepts >
+Kube Downscaler allows you to scale down to 0 your workloads when you don't need them (out of office hours, weekends, etc...).
+
+Let's say that we want to downscale to 0 the `sample` Deployment at 8pm and bring it back to original replicas at 5am every day. We could add the following annotation on the Deployment and the `kube-downscaler` will do the trick.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: sample
+    annotations:
+        downscaler/downscale-period: Mon-Sun 20:00-20:01 Europe/Zurich
+        downscaler/upscale-period: Mon-Sun 05:00-05:01 Europe/Zurich
+```
 
 ## Examples
 
-< if the folder `examples/` exists, put here the link to the examples subfolders with their descriptions >
+1. [Shutdown at night, every day](./examples/shutdown-at-night.tf)
 
 ## Contributing
 
-< issues and contribution guidelines for public modules >
+In order to contribute, please install `pre-commit` and run some checks locally, before pushing, according to the next section.
 
 ### Pre-Commit
 
@@ -72,12 +60,14 @@ as described in the `.pre-commit-config.yaml` file
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~> 2.0 |
 
 ## Modules
 
@@ -85,11 +75,20 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [kubernetes_cluster_role_binding_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding_v1) | resource |
+| [kubernetes_cluster_role_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_v1) | resource |
+| [kubernetes_deployment_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1) | resource |
+| [kubernetes_namespace_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1) | resource |
+| [kubernetes_service_account_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account_v1) | resource |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_dry_run"></a> [dry\_run](#input\_dry\_run) | Whether to use the `--dry-run` CLI flag to block the downscaler from introducing any change. | `bool` | `false` | no |
+| <a name="input_image_version"></a> [image\_version](#input\_image\_version) | Version of the 'kube-downscaler' image deployed as a controller | `string` | `"23.2.0"` | no |
 
 ## Outputs
 
