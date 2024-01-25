@@ -4,7 +4,7 @@ locals {
   }
 }
 
-resource "kubernetes_deploymentss_v1" "shutdown_at_night" {
+resource "kubernetes_deployment_v1" "shutdown_at_night" {
   metadata {
     name   = "nginx"
     labels = local.nginx_labels
