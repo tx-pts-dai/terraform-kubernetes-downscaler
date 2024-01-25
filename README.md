@@ -8,7 +8,8 @@ The goal of the module is to require the least input parameters possible, so you
 
 ```hcl
 module "kube_downscaler" {
-  source = "github.com/tx-pts-dai/terraform-kubernetes-downscaler"
+  source  = "tx-pts-dai/downscaler/kubernetes"
+  version = "~> 0.1.0"
 }
 ```
 
