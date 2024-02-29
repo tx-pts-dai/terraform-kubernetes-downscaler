@@ -4,6 +4,12 @@ variable "dry_run" {
   default     = false
 }
 
+variable "custom_args" {
+  description = "Custom arguments to pass to the downscaler"
+  type        = list(string)
+  default     = []
+}
+
 variable "image_version" {
   description = "Version of the 'kube-downscaler' image deployed as a controller"
   type        = string

@@ -94,6 +94,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_custom_args"></a> [custom\_args](#input\_custom\_args) | Custom arguments to pass to the downscaler | `list(string)` | `[]` | no |
 | <a name="input_dry_run"></a> [dry\_run](#input\_dry\_run) | Whether to use the `--dry-run` CLI flag to block the downscaler from introducing any change. | `bool` | `false` | no |
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | Version of the 'kube-downscaler' image deployed as a controller | `string` | `"23.2.0"` | no |
 | <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector) | Node selector specifics for the Kubernetes deployment | `map(string)` | `{}` | no |
