@@ -17,6 +17,10 @@ locals {
   downscaler_labels = {
     app = local.downscaler_name
   }
+
+  dry_run = var.dry_run ? ["--dry-run"] : []
+  args    = concat(var.custom_args, local.dry_run)
+
 }
 
 resource "kubernetes_namespace_v1" "this" {
@@ -115,7 +119,7 @@ resource "kubernetes_deployment_v1" "this" {
         container {
           image = "hjacobs/kube-downscaler:${var.image_version}"
           name  = local.downscaler_name
-          args  = var.dry_run ? ["--dry-run"] : []
+          args  = local.args
 
           resources {
             limits = {
