@@ -35,7 +35,11 @@ metadata:
 
 1. _My deployment has been shut down and won't scale up until tomorrow, what options do I have to bring it back up?_
 
-    Re-triggering the pipeline for deploying it again would make it available until the next scale-down window.
+    Push a new commit that changes the helm chart (if the docker image is re-created at every push a dummy commit is enough). This only works if `.Values.scale.enabled=false` and `.Values.replicas` is set.
+
+2. _Can I scale up my deployment if `.Values.scale.enabled=true`?_
+
+   At the moment this is not supported, therefore you need to push a commit with `.Values.scale.enabled=false` and `.Values.replicas` is set to a number, then later revert this change.
 
 ## Examples
 
