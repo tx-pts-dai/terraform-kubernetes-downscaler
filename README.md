@@ -70,15 +70,15 @@ as described in the `.pre-commit-config.yaml` file
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 3.0 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~> 2.0 |
+| ---- | ------- |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~> 3.0 |
 
 ## Modules
 
@@ -87,7 +87,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [kubernetes_cluster_role_binding_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding_v1) | resource |
 | [kubernetes_cluster_role_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_v1) | resource |
 | [kubernetes_deployment_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1) | resource |
@@ -97,12 +97,12 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_custom_args"></a> [custom\_args](#input\_custom\_args) | Custom arguments to pass to the downscaler | `list(string)` | `[]` | no |
 | <a name="input_dry_run"></a> [dry\_run](#input\_dry\_run) | Whether to use the `--dry-run` CLI flag to block the downscaler from introducing any change. | `bool` | `false` | no |
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | Version of the 'kube-downscaler' image deployed as a controller | `string` | `"23.2.0"` | no |
 | <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector) | Node selector specifics for the Kubernetes deployment | `map(string)` | `{}` | no |
-| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | List of tolerations for the Kubernetes deployment | <pre>list(object({<br>    effect   = optional(string)<br>    key      = optional(string)<br>    operator = optional(string)<br>    value    = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | List of tolerations for the Kubernetes deployment | <pre>list(object({<br/>    effect   = optional(string)<br/>    key      = optional(string)<br/>    operator = optional(string)<br/>    value    = optional(string)<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 
